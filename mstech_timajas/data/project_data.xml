@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="project_project_maintenance" model="project.project">
+            <field name="name">Maintenance</field>
+            <field name="is_fsm" eval="0"/>
+        </record>
+
+        <record id="project_purchase_inspection" model="project.task.type">
+            <field name="name">Perform Inspection</field>
+            <field name="project_ids" eval="[(4, ref('project_project_maintenance'))]"/>
+            <field name="sequence" eval="1"/>
+        </record>
+
+       <record id="project_task_maintenance" model="project.task.type">
+            <field name="name">Perform maintenance</field>
+            <field name="project_ids" eval="[(4, ref('project_project_maintenance'))]"/>
+            <field name="sequence" eval="2"/>
+        </record>
+
+        <record id="project_task_approve" model="project.task.type">
+            <field name="name">Received Approval</field>
+            <field name="project_ids" eval="[(4, ref('project_project_maintenance'))]"/>
+            <field name="sequence" eval="3"/>
+        </record>
+
+    </data>
+</odoo>

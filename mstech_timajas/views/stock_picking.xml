@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_picking_timajas" model="ir.ui.view">
+		<field name="name">stock.picking.timajas</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.view_picking_form"/>
+		<field name="arch" type="xml">
+		<data>
+			<xpath expr="//field[@name='origin']" position="after">
+				<field name="type_in_out" widget='radio' options="{'horizontal': true}"/>
+			</xpath>
+			<xpath expr="//field[@name='name']" position="after">
+				<field name="has_auth" widget="state_selection" readonly="1" class="mr-3"/>
+			</xpath>
+                        <xpath expr="//button[@name='button_validate']" position="after">
+                                <button name="button_auth" string="Authorization" class="btn-danger" type="object" groups="approvals.group_approval_manager" attrs="{'invisible': ['|', ('state', '!=', 'no_auth'), ('show_validate', '=', True)]}" />
+                        </xpath>
+			<xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+				<field name="product_cost_stck" widget="monetary" optional="hide" />
+			</xpath>
+			<xpath expr="//field[@name='state']" position="attributes">
+				<attribute name="statusbar_visible">draft,confirmed,no_auth,assigned,done</attribute>
+			</xpath>
+                </data>
+		</field>        
+        </record>
+    	<record id="view_stock_picking_tree_timajas" model="ir.ui.view">
+		<field name="name">stock.picking.tree.timajas</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.vpicktree"/>
+		<field name="arch" type="xml">
+		<data>
+			<xpath expr="//tree/field[@name='state']" position="attributes">
+				<attribute name="decoration-warning">state == 'no_auth'</attribute>
+			</xpath>
+                </data>
+		</field>        
+        </record>
+    </data>
+</odoo>

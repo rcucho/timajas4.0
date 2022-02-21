@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_maintenance_request_form_timajas" model="ir.ui.view">
+            <field name="name">maintenance.request.form.timajas</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='maintenance_type']" position="after">
+                    <field name="mant_project" attrs="{'invisible':[('stage_id','==',1)]}" />
+                </xpath>
+            </data>
+            </field>
+        </record>
+        <record id="view_maintenance_equipment_form_timajas" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form.timajas</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+            <data>
+		<xpath expr="//field[@name='partner_ref']" position="after">
+		    <field name="eqip_product" attrs="{'invisible':[('id','=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(maintenance.hr_equipment_request_action_from_equipment)d']" position="after">
+                    <button type="object" name="action_view_task3" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('task_count', '=', 0)]}">
+                        <field name="task_count" widget="statinfo" string="Tasks"/>
+                    </button>
+                    <button type="object"
+                            name= "action_view_stock_move_lines2"
+                            class="oe_stat_button" icon="fa-exchange"
+                            groups="stock.group_stock_user">
+                            <div class="o_field_widget o_stat_info mr4">
+                                <span class="o_stat_text">Spare Parts:</span>
+                            </div>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="stock_eq_cont"/></span>
+                            </div>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='warranty_date']" position="after">
+                    <field name="mant_lote" attrs="{'invisible':[('eqip_product','=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='serial_no']" position="attributes">
+			<attribute name="attrs">{'invisible':[('eqip_product', '=', False)]}</attribute>
+		</xpath>
+            </data>
+            </field>
+        </record>
+        <record id="view_move_stock_equipment" model="ir.ui.view">
+            <field name="name">stock.move.line.tree.equipment</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name="product_cost_std" optional="show"/>
+                    <field name="product_cost_tot" sum="Total Cost" optional="show"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+    </data>
+</odoo>

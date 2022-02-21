@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_product_mant_form_timajas" model="ir.ui.view">
+            <field name="name">product.maintenance.form.timajas</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//button[@name='action_open_product_lot']" position="after">
+                    <!-- <button type="object" name="action_view_project_pids" class="oe_stat_button" icon="fa-puzzle-piece" attrs="{'invisible': [('project_pids', '=', [] )] }" >
+                        <field name="project_pids" invisible="1"/>
+                        <field name="project_count2" widget="statinfo" string="Projects"/>
+                    </button> -->
+                    <button type="object" name="action_view_task2" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('task_count', '=', 0)]}">
+                        <field name="task_count" widget="statinfo" string="Tareas"/>
+                    </button>
+                </xpath>
+                <!--<xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="stock_count" />
+                    <field name="tasks_mant_ids" />
+                </xpath>-->
+            </data>
+            
+            </field>
+        </record>
+        <!--<record id="view_product_temp_mant_form_timajas" model="ir.ui.view">
+            <field name="name">product.template.maintenance.form.timajas</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//button[@name='action_open_product_lot']" position="after">
+                    <button name="667" type="action" class="oe_stat_button" context="{'default_company_id':company_id}" icon="fa-wrench">
+                        <field string="Proyectos" name="project_count_temp" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </data>
+            </field>
+        </record>-->
+    </data>
+</odoo>
