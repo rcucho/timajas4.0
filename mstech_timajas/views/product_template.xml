@@ -28,7 +28,7 @@
             <data>
                 <xpath expr="//field[@name='standard_price']" position="attributes">
                     <attribute name="default">1</attribute>
-                    <attribute name="required">True</attribute>
+                    <attribute name="required">1</attribute>
                 </xpath>
             </data>
             </field>
