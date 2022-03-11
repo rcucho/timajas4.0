@@ -16,27 +16,21 @@
                         <field name="task_count" widget="statinfo" string="Tareas"/>
                     </button>
                 </xpath>
-                <!--<xpath expr="//field[@name='uom_po_id']" position="after">
-                    <field name="stock_count" />
-                    <field name="tasks_mant_ids" />
-                </xpath>-->
             </data>
-            
             </field>
         </record>
-        <!--<record id="view_product_temp_mant_form_timajas" model="ir.ui.view">
-            <field name="name">product.template.maintenance.form.timajas</field>
+        
+        <record id="view_product_template_form_mipclista" model="ir.ui.view">
+            <field name="name">product.template.form.mipclista</field>
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
             <data>
-                <xpath expr="//button[@name='action_open_product_lot']" position="after">
-                    <button name="667" type="action" class="oe_stat_button" context="{'default_company_id':company_id}" icon="fa-wrench">
-                        <field string="Proyectos" name="project_count_temp" widget="statinfo"/>
-                    </button>
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="required">True</attribute>
                 </xpath>
             </data>
             </field>
-        </record>-->
+        </record>
     </data>
 </odoo>
