@@ -27,6 +27,7 @@
             <field name="arch" type="xml">
             <data>
                 <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="default">1</attribute>
                     <attribute name="required">True</attribute>
                 </xpath>
             </data>
